@@ -1,42 +1,217 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* General Styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #f6f8fa; /* Light gray background, similar to GitHub */
+  color: #24292e; /* Dark text color */
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 2rem;
+  background-color: #ffffff; /* White background for the main content area */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h1 {
+  color: #24292e;
   text-align: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e1e4e8; /* Subtle separator */
+  padding-bottom: 0.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Main content layout */
+.main-content {
+  display: flex;
+  gap: 30px; /* Space between form and list */
+  margin-top: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Snippet Form Styling */
+.snippet-form-container {
+  flex: 1; /* Takes up available space */
+  background-color: #f6f8fa; /* Slightly different background for form */
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
+}
+
+.snippet-form-container h2 {
+  margin-top: 0;
+  color: #24292e;
+  font-size: 1.4em;
+  margin-bottom: 1rem;
+}
+
+.snippet-form .form-field {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column; /* Stack label and input */
+  align-items: flex-start; /* Align items to the start */
+}
+
+.snippet-form label {
+  display: block; /* Ensure label is on its own line */
+  margin-bottom: 8px;
+  font-weight: 600; /* Bolder labels */
+  color: #24292e;
+}
+
+.snippet-form input[type="text"],
+.snippet-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5da; /* GitHub-like border */
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  font-size: 1em;
+  font-family: inherit; /* Use the same font as the rest of the app */
+  background-color: #ffffff; /* White input background */
+  color: #24292e;
+}
+
+.snippet-form textarea {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.snippet-form button[type="submit"] {
+  background-color: #28a745; /* Green button for submit */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.snippet-form button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Snippet List Styling */
+.snippet-list-container {
+  flex: 1; /* Takes up available space */
+  background-color: #f6f8fa; /* Slightly different background for list */
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
+  display: flex;
+  flex-direction: column;
+}
+
+.snippet-list-container h2 {
+  margin-top: 0;
+  color: #24292e;
+  font-size: 1.4em;
+  margin-bottom: 1rem;
+}
+
+.snippet-list-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Allow list to take available vertical space */
+}
+
+.snippet-item {
+  background-color: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+  text-align: left; /* Align text to the left */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.snippet-item h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #0366d6; /* Link-like color for titles */
+  font-size: 1.2em;
+}
+
+.snippet-item pre {
+  background-color: #f6f8fa; /* Light background for code blocks */
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto; /* Enable horizontal scrolling for code */
+  margin-bottom: 10px;
+}
+
+.snippet-item pre code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 0.9em;
+  display: block; /* Ensure pre takes full width */
+}
+
+.snippet-item p {
+  margin-bottom: 10px;
+  color: #586069; /* Muted color for description */
+  font-size: 0.95em;
+}
+
+.snippet-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.snippet-actions button {
+  padding: 5px 10px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.snippet-actions button:hover {
+  background-color: #f0f0f0; /* Slight hover effect */
+}
+
+.snippet-actions button:nth-of-type(1) { /* Edit button */
+  background-color: #0366d6; /* Blue for edit */
+  color: white;
+  border-color: #0366d6;
+}
+
+.snippet-actions button:nth-of-type(1):hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.snippet-actions button:nth-of-type(2) { /* Delete button */
+  background-color: #d73a49; /* Red for delete */
+  color: white;
+  border-color: #d73a49;
+}
+
+.snippet-actions button:nth-of-type(2):hover {
+  background-color: #c02c3a;
+  border-color: #c02c3a;
+}
+
+/* Edit Form Styling */
+.edit-form-container {
+  margin-top: 20px; /* Space above the edit form */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column; /* Stack form and list on smaller screens */
   }
-  to {
-    transform: rotate(360deg);
+  .snippet-list-container {
+    order: 2; /* Move list below form on small screens */
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .snippet-form-container {
+    order: 1; /* Keep form at the top */
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

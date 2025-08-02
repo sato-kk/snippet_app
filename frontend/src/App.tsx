@@ -102,75 +102,80 @@ function App() {
 
   return (
     <div className="App">
-      <h1>コードスニペット管理</h1>
+      <h1>Code Snippet Manager</h1>
+      <div className="main-content">
+        {/* 新規スニペット作成フォーム */}
+        <div className="snippet-form-container">
+          <h2>Add New Snippet</h2>
+          <form onSubmit={handleAddSnippet} className="snippet-form">
+            <div className="form-field">
+              <label htmlFor="new-title">Title:</label>
+              <input
+                id="new-title"
+                type="text"
+                name="title"
+                value={newSnippet.title}
+                onChange={handleNewSnippetChange}
+                required
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="new-code">Code:</label>
+              <textarea
+                id="new-code"
+                name="code"
+                value={newSnippet.code}
+                onChange={handleNewSnippetChange}
+                required
+                rows={10}
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="new-description">Description:</label>
+              <textarea
+                id="new-description"
+                name="description"
+                value={newSnippet.description}
+                onChange={handleNewSnippetChange}
+                rows={3}
+              />
+            </div>
+            <button type="submit">Add</button>
+          </form>
+        </div>
 
-      {/* 新規スニペット作成フォーム */}
-      <div className="snippet-form">
-        <h2>新しいスニペットを追加</h2>
-        <form onSubmit={handleAddSnippet}>
-          <div>
-            <label>タイトル:</label>
-            <input
-              type="text"
-              name="title"
-              value={newSnippet.title}
-              onChange={handleNewSnippetChange}
-              required
-            />
-          </div>
-          <div>
-            <label>コード:</label>
-            <textarea
-              name="code"
-              value={newSnippet.code}
-              onChange={handleNewSnippetChange}
-              required
-              rows={10}
-            />
-          </div>
-          <div>
-            <label>説明:</label>
-            <textarea
-              name="description"
-              value={newSnippet.description}
-              onChange={handleNewSnippetChange}
-              rows={3}
-            />
-          </div>
-          <button type="submit">追加</button>
-        </form>
-      </div>
-
-      <hr />
-
-      {/* スニペット一覧 */}
-      <div className="snippet-list">
-        <h2>スニペット一覧</h2>
-        {snippets.length === 0 ? (
-          <p>スニペットがありません。</p>
-        ) : (
-          <ul>
-            {snippets.map((snippet) => (
-              <li key={snippet.id}>
-                <h3>{snippet.title}</h3>
-                <pre><code>{snippet.code}</code></pre>
-                {snippet.description && <p>{snippet.description}</p>}
-                <button onClick={() => handleEditStart(snippet)}>編集</button>
-                <button onClick={() => handleDeleteSnippet(snippet.id)}>削除</button>
-              </li>
-            ))}
-          </ul>
-        )}
+        {/* スニペット一覧 (右サイド) */}
+        <div className="snippet-list-container">
+          <h2>Snippets</h2>
+          {snippets.length === 0 ? (
+            <p>No Snippets</p>
+          ) : (
+            <ul>
+              {snippets.map((snippet) => (
+                <li key={snippet.id} className="snippet-item">
+                  <h3>{snippet.title}</h3>
+                  <pre><code>{snippet.code}</code></pre>
+                  {snippet.description && <p>{snippet.description}</p>}
+                  <div className="snippet-actions">
+                    <button onClick={() => handleEditStart(snippet)}>Edit</button>
+                    <button onClick={() => handleDeleteSnippet(snippet.id)}>Delete</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
 
       {/* スニペット編集フォーム */}
       {editingSnippet && (
-        <div className="snippet-form edit-form">
-          <h2>スニペットを編集</h2>
-          <form onSubmit={handleUpdateSnippet}>
-            <div>
-              <label>タイトル:</label>
+        <div className="snippet-form-container edit-form-container">
+          <h2>Edit Snippet</h2>
+          <form onSubmit={handleUpdateSnippet} className="snippet-form">
+            <div className="form-field">
+              <label htmlFor="edit-title">Title:</label>
               <input
+                id="edit-title"
                 type="text"
                 name="title"
                 value={editForm.title}
@@ -178,9 +183,10 @@ function App() {
                 required
               />
             </div>
-            <div>
-              <label>コード:</label>
+            <div className="form-field">
+              <label htmlFor="edit-code">Code:</label>
               <textarea
+                id="edit-code"
                 name="code"
                 value={editForm.code}
                 onChange={handleEditFormChange}
@@ -188,17 +194,18 @@ function App() {
                 rows={10}
               />
             </div>
-            <div>
-              <label>説明:</label>
+            <div className="form-field">
+              <label htmlFor="edit-description">Description:</label>
               <textarea
+                id="edit-description"
                 name="description"
                 value={editForm.description}
                 onChange={handleEditFormChange}
                 rows={3}
               />
             </div>
-            <button type="submit">更新</button>
-            <button type="button" onClick={handleEditCancel}>キャンセル</button>
+            <button type="submit">Update</button>
+            <button type="button" onClick={handleEditCancel}>Cancel</button>
           </form>
         </div>
       )}
