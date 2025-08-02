@@ -1,217 +1,152 @@
-/* General Styles */
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: #f6f8fa; /* Light gray background, similar to GitHub */
-  color: #24292e; /* Dark text color */
-  margin: 0;
-  padding: 0;
-  line-height: 1.5;
-}
-
 .App {
-  max-width: 1200px;
-  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 2rem;
-  background-color: #ffffff; /* White background for the main content area */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  font-family: sans-serif;
 }
 
 h1 {
-  color: #24292e;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #e1e4e8; /* Subtle separator */
-  padding-bottom: 0.5rem;
+  color: #333;
 }
 
-/* Main content layout */
 .main-content {
   display: flex;
-  gap: 30px; /* Space between form and list */
-  margin-top: 20px;
-}
-
-/* Snippet Form Styling */
-.snippet-form-container {
-  flex: 1; /* Takes up available space */
-  background-color: #f6f8fa; /* Slightly different background for form */
-  padding: 20px;
-  border-radius: 6px;
-  border: 1px solid #e1e4e8;
-}
-
-.snippet-form-container h2 {
-  margin-top: 0;
-  color: #24292e;
-  font-size: 1.4em;
-  margin-bottom: 1rem;
-}
-
-.snippet-form .form-field {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column; /* Stack label and input */
-  align-items: flex-start; /* Align items to the start */
-}
-
-.snippet-form label {
-  display: block; /* Ensure label is on its own line */
-  margin-bottom: 8px;
-  font-weight: 600; /* Bolder labels */
-  color: #24292e;
-}
-
-.snippet-form input[type="text"],
-.snippet-form textarea {
+  gap: 2rem;
   width: 100%;
-  padding: 10px;
-  border: 1px solid #d1d5da; /* GitHub-like border */
-  border-radius: 4px;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  font-size: 1em;
-  font-family: inherit; /* Use the same font as the rest of the app */
-  background-color: #ffffff; /* White input background */
-  color: #24292e;
+  max-width: 1200px;
 }
 
-.snippet-form textarea {
-  resize: vertical; /* Allow vertical resizing */
+.snippet-form-container {
+  flex: 1;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
 
-.snippet-form button[type="submit"] {
-  background-color: #28a745; /* Green button for submit */
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: 500;
-  transition: background-color 0.2s ease-in-out;
+.edit-form-container {
+  margin-top: 2rem;
 }
 
-.snippet-form button[type="submit"]:hover {
-  background-color: #218838;
+.snippet-form h2 {
+  margin-top: 0;
+  color: #555;
 }
 
-/* Snippet List Styling */
-.snippet-list-container {
-  flex: 1; /* Takes up available space */
-  background-color: #f6f8fa; /* Slightly different background for list */
-  padding: 20px;
-  border-radius: 6px;
-  border: 1px solid #e1e4e8;
+.snippet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-field {
   display: flex;
   flex-direction: column;
 }
 
+.form-field label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-field input,
+.form-field textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.snippet-list-container {
+  flex: 1;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
 .snippet-list-container h2 {
   margin-top: 0;
-  color: #24292e;
-  font-size: 1.4em;
-  margin-bottom: 1rem;
+  color: #555;
 }
 
 .snippet-list-container ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-grow: 1; /* Allow list to take available vertical space */
 }
 
 .snippet-item {
-  background-color: #ffffff;
-  border: 1px solid #e1e4e8;
-  border-radius: 6px;
-  padding: 15px;
-  margin-bottom: 15px;
-  text-align: left; /* Align text to the left */
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.snippet-item:last-child {
+  border-bottom: none;
 }
 
 .snippet-item h3 {
   margin-top: 0;
-  margin-bottom: 10px;
-  color: #0366d6; /* Link-like color for titles */
-  font-size: 1.2em;
+  color: #333;
 }
 
 .snippet-item pre {
-  background-color: #f6f8fa; /* Light background for code blocks */
-  padding: 10px;
+  background-color: #eee;
+  padding: 1rem;
   border-radius: 4px;
-  overflow-x: auto; /* Enable horizontal scrolling for code */
-  margin-bottom: 10px;
-}
-
-.snippet-item pre code {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 0.9em;
-  display: block; /* Ensure pre takes full width */
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .snippet-item p {
-  margin-bottom: 10px;
-  color: #586069; /* Muted color for description */
-  font-size: 0.95em;
+  color: #666;
 }
 
 .snippet-actions {
-  margin-top: 10px;
+  margin-top: 1rem;
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 0.5rem;
 }
 
-.snippet-actions button {
-  padding: 5px 10px;
-  border: 1px solid #d1d5da;
+button {
+  padding: 0.5rem 1rem;
+  border: none;
   border-radius: 4px;
+  background-color: #007bff;
+  color: white;
   cursor: pointer;
-  font-size: 0.9em;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  font-size: 1rem;
 }
 
-.snippet-actions button:hover {
-  background-color: #f0f0f0; /* Slight hover effect */
-}
-
-.snippet-actions button:nth-of-type(1) { /* Edit button */
-  background-color: #0366d6; /* Blue for edit */
-  color: white;
-  border-color: #0366d6;
-}
-
-.snippet-actions button:nth-of-type(1):hover {
+button:hover {
   background-color: #0056b3;
-  border-color: #0056b3;
 }
 
-.snippet-actions button:nth-of-type(2) { /* Delete button */
-  background-color: #d73a49; /* Red for delete */
-  color: white;
-  border-color: #d73a49;
+button[type="button"] {
+  background-color: #6c757d;
 }
 
-.snippet-actions button:nth-of-type(2):hover {
-  background-color: #c02c3a;
-  border-color: #c02c3a;
+button[type="button"]:hover {
+  background-color: #5a6268;
 }
 
-/* Edit Form Styling */
-.edit-form-container {
-  margin-top: 20px; /* Space above the edit form */
+.lang-tabs {
+  display: flex;
+  margin-bottom: 1rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .main-content {
-    flex-direction: column; /* Stack form and list on smaller screens */
-  }
-  .snippet-list-container {
-    order: 2; /* Move list below form on small screens */
-  }
-  .snippet-form-container {
-    order: 1; /* Keep form at the top */
-  }
+.lang-tabs button {
+  background-color: #eee;
+  color: #333;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.lang-tabs button.active {
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
 }

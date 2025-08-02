@@ -26,6 +26,18 @@ function App() {
     code: '',
     description: '',
   });
+  const [selectedLang, setSelectedLang] = useState<'python' | 'go'>('python');
+
+  const pythonPlaceholder = `def hello_world():
+  print("Hello, Python!")`;
+
+  const goPlaceholder = `package main
+
+import "fmt"
+
+func main() {
+  fmt.Println("Hello, Go!")
+}`;
 
   // 新規スニペットフォームの入力値を更新
   const handleNewSnippetChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -40,7 +52,7 @@ function App() {
   const handleAddSnippet = (e: FormEvent) => {
     e.preventDefault();
     if (!newSnippet.title || !newSnippet.code) {
-      alert('タイトルとコードは必須です。');
+      alert('Need Title and Code。');
       return;
     }
     const snippetToAdd: Snippet = {
@@ -84,7 +96,7 @@ function App() {
   const handleUpdateSnippet = (e: FormEvent) => {
     e.preventDefault();
     if (!editingSnippet || !editForm.title || !editForm.code) {
-      alert('タイトルとコードは必須です。');
+      alert('Need Title and Code');
       return;
     }
     setSnippets((prev) =>
@@ -119,6 +131,22 @@ function App() {
                 required
               />
             </div>
+            <div className="lang-tabs">
+              <button
+                type="button"
+                className={selectedLang === 'python' ? 'active' : ''}
+                onClick={() => setSelectedLang('python')}
+              >
+                Python
+              </button>
+              <button
+                type="button"
+                className={selectedLang === 'go' ? 'active' : ''}
+                onClick={() => setSelectedLang('go')}
+              >
+                Go
+              </button>
+            </div>
             <div className="form-field">
               <label htmlFor="new-code">Code:</label>
               <textarea
@@ -126,6 +154,7 @@ function App() {
                 name="code"
                 value={newSnippet.code}
                 onChange={handleNewSnippetChange}
+                placeholder={selectedLang === 'python' ? pythonPlaceholder : goPlaceholder}
                 required
                 rows={10}
               />
